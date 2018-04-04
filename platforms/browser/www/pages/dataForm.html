@@ -1,0 +1,161 @@
+<!— start for form template —>
+<template>
+  <div class="page" data-name="form">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Data Form</div>
+    </div>
+  </div>
+
+  <div class="page-content">
+  <div class="block-title">Data Form Example {{display.formData.name}}</div>
+  <div class="block block-strong row">
+  <div class="col"><a class="button button-raised" @click="convertFormToData()" href="#">Get Data</a></div>
+  <div class="col"><a class="button button-raised" @click="fillFormFromData()" href="#">Fill Form</a></div>
+  <div class="col"><a class="button button-raised" @click="openAlert('yes')" href="#">cause Alert</a></div>
+  </div>
+  <form class="list" id="my-form">
+<ul>
+<li>
+  <div class="item-content item-input">
+    <div class="item-inner">
+      <div class="item-title item-label">Name</div>
+      <div class="item-input-wrap">
+        <input type="text" name="name" placeholder="Your name">
+      </div>
+    </div>
+  </div>
+</li>
+<li>
+  <div class="item-content item-input">
+    <div class="item-inner">
+      <div class="item-title item-label">E-mail</div>
+      <div class="item-input-wrap">
+        <input type="email" name="email" placeholder="E-mail">
+      </div>
+    </div>
+  </div>
+</li>
+<li>
+  <div class="item-content item-input">
+    <div class="item-inner">
+      <div class="item-title item-label">Gender</div>
+      <div class="item-input-wrap">
+        <select name="gender">
+          <option value="male" selected>Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</li>
+<li>
+  <div class="item-content">
+    <div class="item-inner">
+      <div class="item-title">Toggle</div>
+      <div class="item-after">
+        <label class="toggle toggle-init">
+          <input type="checkbox" name="toggle" value="yes"><i class="toggle-icon"></i>
+        </label>
+      </div>
+    </div>
+  </div>
+</li>
+</ul>
+</form>
+  </div>
+</div>
+</template>
+<script>
+  var formData;
+  return {
+    // Lifecycle Hooks
+
+    beforeCreate() {
+      console.log('componentBeforeCreate', this)
+    },
+    created() {
+      console.log('componentCreated', this)
+    },
+    beforeMount() {
+      console.log('componentBeforeMount', this)
+    },
+    mounted() {
+      console.log('componentMounted', this);
+    },
+    beforeDestroy() {
+      console.log('componentBeforeDestroy', this);
+    },
+    destroyed() {
+      console.log('componentDestroyed', this);
+    },
+    // Component Data
+    data: function () {
+      formData = {
+        'name': 'bob',
+        'email': 'john@doe.com',
+        'gender': 'female',
+        'toggle': ['yes'],
+      }
+      return { display : {formData}
+      };
+    //  return returnJimmy(this);
+    },
+    // Component Methods
+    methods: {
+      openAlert: function (xxx) {
+        var self = this;
+        self.$app.dialog.alert('Hello World' + xxx);
+        self.$root.user.firstName='xxxxx';
+      },
+      convertFormToData: function () {
+        var formData = app.form.convertToData('#my-form');
+        alert("name is" + formData.name);
+        alert(JSON.stringify(formData));
+      },
+      fillFormFromData: function () {
+        var formData = {
+          'name': 'jimmyjohn',
+          'email': '',
+          'gender': '',
+          'toggle': [''],
+        }
+        app.form.fillFromData('#my-form', formData);
+      },
+    },
+    // Page Events
+    on: {
+      pageMounted: function(e, page) {
+        console.log('pageMounted', page);
+      },
+      pageInit: function(e, page) {
+        app.form.fillFromData('#my-form', formData);
+        console.log('pageInit', page);
+      },
+      pageBeforeIn: function(e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function(e, page) {
+        console.log('pageAfterIn', page);
+      },
+      pageBeforeOut: function(e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function(e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function(e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+</script>
+
+
+<!— end for form template —>

@@ -1,0 +1,105 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">CLint Profile Page</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block block-strong">
+        <p>here we would map the data to form fields
+      </div>
+      <div class="block-title">Events Handling</div>
+      <div class="block block-strong">
+        <a href="#" class="button button-raised" @click="openAlert($route.url)">Open Alert</a>
+      </div>
+      <div class="block-title">Page Component Data</div>
+      <div class="block block-strong">
+        <p>Hello! profile {{$route.params.name}}</p>
+        <ul>
+          {{#each profiles}}
+          <li>memory {{memory}} -- SUDS {{SUDS}} -- bodyScan {{bodyScan}} -- mentalImage {{ mentalImage}} --negativeCon  {{negativeCon}} -- position {{position}}
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+<script>
+  return {
+    // Lifecycle Hooks
+
+    beforeCreate() {
+      console.log('componentBeforeCreate', this)
+    },
+    created() {
+      console.log('componentCreated', this)
+    },
+    beforeMount() {
+      console.log('componentBeforeMount', this)
+    },
+    mounted() {
+      console.log('componentMounted', this);
+    },
+    beforeDestroy() {
+      console.log('componentBeforeDestroy', this);
+    },
+    destroyed() {
+      console.log('componentDestroyed', this);
+    },
+    // Component Data
+    data: function () {
+      console.log('function-client',app.data.clients);
+      console.log('function-param',this.$route.params.name);
+     //app.dialog.alert('Hello World' + this.$route.params.name);
+      console.log('function-c;inet1', this);// Must return an object
+      var xx = app.data.clients[this.$route.params.name];
+      console.log('function-xx'+xx);      console.log('function-'+xx.clientName,xx.profiles);
+      return xx;//returnJimmy(this);
+    },
+    // Component Methods
+    methods: {
+      openAlert: function (xxx) {
+        var self = this;
+        self.$app.dialog.alert('Hello World' + xxx);
+      //  self.$root.user.firstName='xxxxx';
+      },
+    },
+    // Page Events
+    on: {
+      pageMounted: function(e, page) {
+        console.log('pageMounted', page);
+      },
+      pageInit: function(e, page) {
+        console.log('pageInit', page);
+      },
+      pageBeforeIn: function(e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function(e, page) {
+        console.log('pageAfterIn', page);
+      },
+      pageBeforeOut: function(e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function(e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function(e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+</script>

@@ -1,5 +1,9 @@
 routes = [
   {
+    path: '/dataForm/',
+    componentUrl: './pages/dataForm.html',
+  },
+  {
     path: '/',
     url: './index.html',
   },
@@ -10,6 +14,35 @@ routes = [
   {
     path: '/form/',
     url: './pages/form.html',
+  },
+  {
+    path: '/intake/',
+    url: './pages/intake.html',
+  },
+  {
+    path: '/profileStart/',
+    url: './pages/profileStart.html',
+  },
+  {
+    path: '/profileStop/',
+    url: './pages/profileStop.html',
+  },
+  {
+    path: '/xform/',
+    url: './pages/xform.html',
+  },
+  {
+    path: '/selectClient/',
+    componentUrl: './pages/selectClient.html',
+  },
+
+  {
+    path: '/clientSelect/',
+    url: './pages/clientSelect.html',
+  },
+  {
+    path: '/client-loader-component/:name/',
+    componentUrl: './pages/client-loader-component.html',
   },
   // Left View Pages
   {
