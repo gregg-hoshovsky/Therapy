@@ -10,21 +10,29 @@
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.eksanalytics.therapy"
         },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.eksanalytics.therapy"
-        },
-        "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.eksanalytics.therapy"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.eksanalytics.therapy"
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.eksanalytics.therapy"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.eksanalytics.therapy"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.eksanalytics.therapy"
         }
     },
     "dependent_plugins": {},
     "modules": [
+        {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "pluginId": "cordova-plugin-statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
+        },
         {
             "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
             "id": "cordova-plugin-file.DirectoryEntry",
@@ -227,21 +235,13 @@
             "clobbers": [
                 "window.Media"
             ]
-        },
-        {
-            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-            "id": "cordova-plugin-statusbar.statusbar",
-            "pluginId": "cordova-plugin-statusbar",
-            "clobbers": [
-                "window.StatusBar"
-            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-console": "1.0.7",
-        "cordova-plugin-file": "6.0.1",
-        "cordova-plugin-media": "5.0.2",
         "cordova-plugin-statusbar": "1.0.1",
-        "cordova-plugin-whitelist": "1.2.2"
+        "cordova-plugin-whitelist": "1.2.2",
+        "cordova-plugin-file": "6.0.1",
+        "cordova-plugin-media": "5.0.2"
     }
 }

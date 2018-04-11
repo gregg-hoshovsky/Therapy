@@ -1,0 +1,146 @@
+<template>
+
+  <div class="page" data-name="form">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Client Selection</div>
+    </div>
+  </div>
+
+  <div class="page-content">
+
+  <!-- ajax -->
+  <div id="ulist1">
+  	<div class="container">
+  		<h1 class="fleft">List of users</h1>
+      <select name="fruits">
+      {{#each clientList}}
+        <option value="{{index}}">{{name}}</option>
+        {{/each}}
+      </select>
+      <div class="list">
+      <ul>
+        {{#each clientList}}
+        <li class="swipeout">
+          <div class="swipeout-content">
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title">{{name}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="swipeout-actions-left">
+            <a href="#" class="swipeout-close color-orange">Mark</a>
+          </div>
+          <div class="swipeout-actions-right">
+            <a href="/client-loader-component/{{name}}/" class="swipeout-close color-blue">JAX</a>
+            <a href="/request-and-load/user/{{name}}/" class="swipeout-close color-blue">Request Data & Load</a>
+            <a href="#" class="swipeout-delete">Delete</a>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    </div>
+  </div>
+
+
+</template>
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+<script>
+  return {
+    // Lifecycle Hooks
+
+    beforeCreate() {
+      console.log('componentBeforeCreate', this)
+    },
+    created() {
+      console.log('componentCreated', this)
+    },
+    beforeMount() {
+      console.log('componentBeforeMount', this)
+    },
+    mounted() {
+      console.log('componentMounted', this);
+    },
+    beforeDestroy() {
+      console.log('componentBeforeDestroy', this);
+    },
+    destroyed() {
+      console.log('componentDestroyed', this);
+    },
+    // Component Data
+    data: function () {
+      // Must return an object
+    console.log('i am unique', app.data);
+
+      return app.data;
+      //data = executeAjax1("https://eksanalytics.com/therapy/index.php?action=read",{},this);
+      //kkreturn data;//returnJimmy(this);
+    },
+    // Component Methods
+    methods: {
+      openAlert: function (xxx) {
+        var self = this;
+        self.$app.dialog.alert('Hello World' + xxx);
+        self.$root.user.firstName='xxxxx';
+      },
+      openAlert1: function () {
+        help();
+        var self = this;
+        console.log(this);
+        //self.$app.dialog.alert('Hello World' + xxx);
+      //  self.$root.user.firstName='xxxxx';
+
+      },
+      convertFormToData: function () {
+        var formData = app.form.convertToData('#my-form');
+        alert(JSON.stringify(formData));
+      },
+      fillFormFromData: function () {
+        var formData = {
+          'name': 'John',
+          'email': 'john@doe.com',
+          'gender': 'female',
+          'toggle': ['yes'],
+        }
+        app.form.fillFromData('#my-form', formData);
+      },
+    },
+    // Page Events
+    on: {
+      pageMounted: function(e, page) {
+        console.log('pageMounted', page);
+      },
+      pageInit: function(e, page) {
+        console.log('pageInit', page);
+      },
+      pageBeforeIn: function(e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function(e, page) {
+        console.log('pageAfterIn', page);
+      },
+      pageBeforeOut: function(e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function(e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function(e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+</script>

@@ -13,7 +13,12 @@
     </div>
     <div class="page-content">
       <div class="block block-strong">
-        <p>here we would map the data to form fields
+        <p>here we would map the data to form fields</p>
+        <a href="#" class="btn large" onclick="playAudio('https://eksanalytics.com/therapy/TDS-InHell.mp3');">Play Audio</a>
+      <a href="#" class="btn large" onclick="setVolume('0.0');">Mute Audio</a>
+      <a href="#" class="btn large" onclick="setVolume('1.0');">Unmute Audio</a>
+      <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
+      <p id="audio_position"></p>
       </div>
       <div class="block-title">Events Handling</div>
       <div class="block block-strong">
@@ -31,6 +36,7 @@
       </div>
     </div>
   </div>
+
 </template>
 <style>
   p {
