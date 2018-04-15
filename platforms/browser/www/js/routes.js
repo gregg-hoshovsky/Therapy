@@ -35,14 +35,13 @@ routes = [
     path: '/selectClient/',
     componentUrl: './pages/selectClient.html',
   },
-
   {
-    path: '/clientSelect/',
-    url: './pages/clientSelect.html',
+    path: '/client-loader-component/:name/:id/',
+    componentUrl: './pages/client-loader-component.html',
   },
   {
-    path: '/client-loader-component/:name/',
-    componentUrl: './pages/client-loader-component.html',
+    path: '/selectProfile/:name/',
+    componentUrl: './pages/selectProfile.html',
   },
   // Left View Pages
   {

@@ -1,0 +1,90 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Client Profile Page</div>
+      </div>
+    </div>
+
+
+
+    <div class="page-content">
+      <h4>$route</h4>
+      <p>Contains properties of the current route:</p>
+      <ul style="padding-left:25px">
+        <li><b>$route.url</b>: {{$route.url}}</li>
+        <li><b>$route.path</b>: {{$route.path}}</li>
+        <li><b>$route.path</b>: {{$route.params.name}}</li>
+        <li><b>$route.params</b>: {{js 'return JSON.stringify(this.$route.params)'}}</li>
+        <li><b>$route.hash</b>: {{$route.hash}}</li>
+        <li><b>$route.query</b>: {{js 'return JSON.stringify(this.$route.query)'}}</li>
+      </ul>
+        <!-- ajax -->
+        <div id="ulist1">
+        	<div class="container">
+        		<h1 class="fleft">List of profiles for {{clientName}} </h1>
+            <div class="list">
+            <ul>
+              {{#each profiles}}
+              <li class="swipeout">
+                <div class="swipeout-content">
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Memory Profile "{{memory}}"</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swipeout-actions-left">
+                  <a href="#" class="swipeout-close color-orange">Mark</a>
+                </div>
+                <div class="swipeout-actions-right">
+                  <a href="/client-loader-component/{{clientName}}/{{id}}/" class="swipeout-close color-blue">profile</a>
+                  <a href="#" class="swipeout-delete">Delete</a>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+</template>
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+<script>
+  return {
+
+    // Component Data
+    data: function () {
+      console.log('function-client',app.data.clients);
+      console.log('function-param',this.$route.params.name);
+     //app.dialog.alert('Hello World' + this.$route.params.name);
+      console.log('function-c;inet1', this);// Must return an object
+      var xx = app.data.clients[this.$route.params.name];
+    //  xx['clinentName']=this.$route.params.name;
+      console.log('function-xx'+this.$root);
+       console.log('function-'+xx.clientName,xx.profiles);
+      return xx;//returnJimmy(this);
+    },
+    // Component Methods
+    methods: {
+      openAlert: function (xxx) {
+        var self = this;
+        self.$app.dialog.alert('Hello World' + xxx);
+      //  self.$root.user.firstName='xxxxx';
+      },
+    },
+
+  }
+</script>

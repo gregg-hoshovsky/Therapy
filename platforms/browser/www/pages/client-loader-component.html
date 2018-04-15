@@ -13,12 +13,89 @@
     </div>
     <div class="page-content">
       <div class="block block-strong">
-        <p>here we would map the data to form fields</p>
+
+        <p>Here are the list of people i know:</p>
+
+
+
+        {{$root.bodyScanList}}
+          bscan<br/>
+        {{bscan}}
+        this bscan<br/>
+        {{this}}
+        this bscan<br/>
+        {{../status}}
+              {{../../status}}
+
+    {{../../../status}}
+
+    <select name="scan">
+      {{#each $root.bodyScanList}}
+          <option value="{{this}}">{{@index}}. {{this}}</option>
+      {{/each}}
+    </select>
+
+
+
+
+        <p>-----select examples----------</p>
+
         <a href="#" class="btn large" onclick="playAudio('https://eksanalytics.com/therapy/TDS-InHell.mp3');">Play Audio</a>
       <a href="#" class="btn large" onclick="setVolume('0.0');">Mute Audio</a>
       <a href="#" class="btn large" onclick="setVolume('1.0');">Unmute Audio</a>
       <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
       <p id="audio_position"></p>
+        <p>---------bodyScan------</p>
+      {{bodyScan}}
+
+    select<br>
+      <select name="scan1">
+        {{#each bscan}}
+            <option value="{{value}}" {{#if selected}}selected{{/if}}> {{value}}</option>
+        {{/each}}
+      </select>
+      dump<br>
+        <ul>
+          {{#each bscan}}
+            <li>{{value}} {{selected}}</li>
+            {{#if selected}}
+                <p>I am selected</p>
+            {{else}}
+                <p>I don't get selected</p>
+            {{/if}}
+         {{/each}}
+        </ul>
+            <p>---------negativeCon------</p>
+            {{negativeCon}}
+  select<br>
+      <select name="scan2">
+        {{#each negativeConList}}
+            <option value="{{value}}" {{#if selected}}selected{{/if}}> {{value}}</option>
+        {{/each}}
+      </select>
+      dump<br>
+          <ul>
+            {{#each negativeConList}}
+              <li>{{value}} {{selected}}</li>
+              {{#if selected}}
+                  <p>I have negativeConList</p>
+              {{else}}
+                  <p>I don't have negativeConList</p>
+              {{/if}}
+           {{/each}}
+          </ul>
+          <p>---------set a field example------</p>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">memory</div>
+                <div class="item-input-wrap">
+                  <input type="text" placeholder="Your name" value="{{memory}}"/>
+                </div>
+              </div>
+            </div>
+          </li>
+
       </div>
       <div class="block-title">Events Handling</div>
       <div class="block block-strong">
@@ -26,12 +103,11 @@
       </div>
       <div class="block-title">Page Component Data</div>
       <div class="block block-strong">
-        <p>Hello! profile {{$route.params.name}}</p>
+        <p>Hello! profile {{$route.params.name}} {{$route.params.id}}</p>
         <ul>
-          {{#each profiles}}
           <li>memory {{memory}} -- SUDS {{SUDS}} -- bodyScan {{bodyScan}} -- mentalImage {{ mentalImage}} --negativeCon  {{negativeCon}} -- position {{position}}
           </li>
-          {{/each}}
+
         </ul>
       </div>
     </div>
@@ -45,35 +121,23 @@
 </style>
 <script>
   return {
-    // Lifecycle Hooks
-
-    beforeCreate() {
-      console.log('componentBeforeCreate', this)
-    },
-    created() {
-      console.log('componentCreated', this)
-    },
-    beforeMount() {
-      console.log('componentBeforeMount', this)
-    },
-    mounted() {
-      console.log('componentMounted', this);
-    },
-    beforeDestroy() {
-      console.log('componentBeforeDestroy', this);
-    },
-    destroyed() {
-      console.log('componentDestroyed', this);
-    },
     // Component Data
     data: function () {
+    console.log('function-param',this.$route.params);
+      return client_loader(this.$route.params);
+      /*
       console.log('function-client',app.data.clients);
       console.log('function-param',this.$route.params.name);
+      console.log('function-param -id',this.$route.params.id);
      //app.dialog.alert('Hello World' + this.$route.params.name);
-      console.log('function-c;inet1', this);// Must return an object
-      var xx = app.data.clients[this.$route.params.name];
-      console.log('function-xx'+xx);      console.log('function-'+xx.clientName,xx.profiles);
+      console.log('function-this', this);// Must return an object
+      console.log('function-this', app.data);// Must return an object
+      var xx = app.data.clients[this.$route.params.name].profiles[this.$route.params.id];
+      console.log('function-xx'+app.data.clients[this.$route.params.name].profiles[this.$route.params.id]);
+      console.log('function-'+xx.clientName,xx.memory);
+      xx['bscan'] = app.data.bodyScan;
       return xx;//returnJimmy(this);
+      */
     },
     // Component Methods
     methods: {
@@ -83,29 +147,6 @@
       //  self.$root.user.firstName='xxxxx';
       },
     },
-    // Page Events
-    on: {
-      pageMounted: function(e, page) {
-        console.log('pageMounted', page);
-      },
-      pageInit: function(e, page) {
-        console.log('pageInit', page);
-      },
-      pageBeforeIn: function(e, page) {
-        console.log('pageBeforeIn', page);
-      },
-      pageAfterIn: function(e, page) {
-        console.log('pageAfterIn', page);
-      },
-      pageBeforeOut: function(e, page) {
-        console.log('pageBeforeOut', page);
-      },
-      pageAfterOut: function(e, page) {
-        console.log('pageAfterOut', page);
-      },
-      pageBeforeRemove: function(e, page) {
-        console.log('pageBeforeRemove', page);
-      },
-    }
+
   }
 </script>
